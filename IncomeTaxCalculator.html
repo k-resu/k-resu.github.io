@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Tax Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Income Tax Calculator</h2>
+        <form id="taxForm">
+            <label for="income">Enter Annual Income:</label>
+            <input type="number" id="income" name="income" required placeholder="Enter your income">
+
+            <label for="taxSlab">Select Tax Slab:</label>
+            <select id="taxSlab" name="taxSlab">
+                <option value="0.1">10%</option>
+                <option value="0.2">20%</option>
+                <option value="0.3">30%</option>
+            </select>
+
+            <button type="button" onclick="calculateTax()">Calculate</button>
+        </form>
+
+        <h3 id="result"></h3>
+    </div>
+
+    <script>
+        function calculateTax() {
+            const income = parseFloat(document.getElementById('income').value);
+            const taxSlab = parseFloat(document.getElementById('taxSlab').value);
+            const resultElement = document.getElementById('result');
+
+            if (isNaN(income) || income <= 0) {
+                resultElement.textContent = "Please enter a valid positive income.";
+                return;
+            }
+
+            const tax = income * taxSlab;
+            resultElement.textContent = `For an income of $${income.toFixed(2)}, the tax is $${tax.toFixed(2)}.`;
+        }
+    </script>
+</body>
+</html>
