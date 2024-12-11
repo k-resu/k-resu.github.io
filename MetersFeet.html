@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Length Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Length Converter</h2>
+        <form id="converterForm">
+            <label for="length">Enter Length:</label>
+            <input type="number" id="length" name="length" required placeholder="Enter value">
+
+            <label for="conversionType">Convert to:</label>
+            <select id="conversionType" name="conversionType">
+                <option value="toMeters">Meters</option>
+                <option value="toFeet">Feet</option>
+            </select>
+
+            <button type="button" onclick="convertLength()">Convert</button>
+        </form>
+
+        <h3 id="result"></h3>
+    </div>
+
+    <script>
+        function convertLength() {
+            const length = parseFloat(document.getElementById('length').value);
+            const conversionType = document.getElementById('conversionType').value;
+            const resultElement = document.getElementById('result');
+
+            if (isNaN(length)) {
+                resultElement.textContent = "Please enter a valid number.";
+                return;
+            }
+
+            let result;
+
+            if (conversionType === 'toMeters') {
+                result = length / 3.28084;
+                resultElement.textContent = `${length} feet is equal to ${result.toFixed(2)} meters.`;
+            } else if (conversionType === 'toFeet') {
+                result = length * 3.28084;
+                resultElement.textContent = `${length} meters is equal to ${result.toFixed(2)} feet.`;
+            }
+        }
+    </script>
+</body>
+</html>
